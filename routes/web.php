@@ -1,7 +1,10 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\GuruDataController;
+use App\Http\Controllers\Admin\KelasController;
+use App\Http\Controllers\Admin\MapelController;
+use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\WalikelasController;
@@ -11,26 +14,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-
-
-
-
+// Login
 Route::get('/login', [LoginController::class, 'index']);
 
-// Route::prefix('lapor')->group(function () {
-//     Route::get('/dashboard_admin', function () {
-//         return 'Admin Dashboard';
-//     });
+// Admin - Dashboard & Data Master
+Route::get('/admin/dashboard/{id?}/{nama?}', [AdminController::class, 'tampilkan']);
+Route::get('/admin/siswa', [SiswaController::class, 'tampilkan']);
+Route::get('/admin/guru', [GuruDataController::class, 'tampilkan']);
+Route::get('/admin/mapel', [MapelController::class, 'tampilkan']);
+Route::get('/admin/kelas', [KelasController::class, 'tampilkan']);
 
-//     Route::get('/dashboard_guru', function () {
-//         return 'Guru Dashboard';
-//     });
-//     Route::get('/dashboard_walikelas', function () {
-//         return 'Walikelas Dashboard';
-//     });
-// });
-
-Route::get('/dashboard_admin/{id}/{nama}', [AdminController::class, 'name']);
-Route::get('/dashboard_guru/{id}/{namaGuru}', [GuruController::class, 'nama']);
-Route::get('/dashboard_walikelas/{id}/{nama}', [WalikelasController::class, 'nama']);
+// Guru & Wali Kelas
+Route::get('/dashboard_guru/{id?}/{namaGuru?}', [GuruController::class, 'nama']);
+Route::get('/dashboard_walikelas/{id?}/{nama?}', [WalikelasController::class, 'nama']);
