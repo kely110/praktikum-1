@@ -14,6 +14,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/homepage', function () {
+    return view('homepage');
+});
+
 // Login
 Route::get('/login', [LoginController::class, 'index']);
 
